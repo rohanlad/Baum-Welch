@@ -9,9 +9,8 @@ The main loop aims to generate a new set of parameters. It does this by iteratin
 
 Gamma and epsilon are used to establish the new set of parameters. However, recall that the main loop performs everything described above per iteration whilst it iterates through all the observation sequences. This is to ensure that information from all the observed sequences are used to establish the new set of parameters. To clarify how it does this, take the traditional formula for the new state transition probability matrix:
 
-$$
-a^*_{ij} = \frac{\sum_{t=1}^{T-1} \xi_{ij}(t)}{\sum_{t=1}^{T-1} \gamma_i(t)}
-$$
+a*_{ij} = ( Σ ξ_{ij}(t) ) / ( Σ γ_i(t) ), for t=1 to T-1
+
 
  
 This is the expected number of transitions from state i to state j over the expected total number of transitions away from state i. Our algorithm will keep track of two ‘global’ variables which track the cumulative sum of the numerator and denominator here across all observation sequences, and then carry out the division at the end after having iterated through all the observations to establish the new state transition probability matrix. Similar logic is used to establish the other parameters too.
