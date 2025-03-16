@@ -7,31 +7,10 @@ Once these matrices have been initialised, our algorithm will then iterate throu
 
 The main loop aims to generate a new set of parameters. It does this by iterating through each of the observation sequences that were given as input to the algorithm. On each iteration, it uses the current parameters in conjunction with the given observation sequence to establish some variables. The forward procedure is undertaken to create alpha, a matrix that stores the probabilities of seeing the observations until time t, and being in state i at time t. The backward procedure is undertaken to create beta, a matrix that stores the probabilities of seeing the final t observations, and being in state i at time t. Once alpha and beta are created, they are used to create two more variables: gamma, a matrix which stores the probabilities of being in state i at time t given the observed sequence, and epsilon, a matrix which stores the probabilities of being in states i and j at times t and t+1 respectively given the observed sequence. 
 
-Gamma and epsilon are used to establish the new set of parameters. However, recall that the main loop performs everything described above per iteration whilst it iterates through all the observation sequences. This is to ensure that information from all the observed sequences are used to establish the new set of parameters. To clarify how it does this, take the traditional formula for the new state transition probability matrix: 
+Gamma and epsilon are used to establish the new set of parameters. However, recall that the main loop performs everything described above per iteration whilst it iterates through all the observation sequences. This is to ensure that information from all the observed sequences are used to establish the new set of parameters. To clarify how it does this, take the traditional formula for the new state transition probability matrix:
 
-a 
-ij
-∗
-​	
- = 
-∑ 
-t=1
-T−1
-​	
- γ 
-i
-​	
- (t)
-∑ 
-t=1
-T−1
-​	
- ξ 
-ij
-​	
- (t)
-​	
- 
+$a^*_{ij} = \frac{\sum_{t=1}^{T-1} \xi_{ij}(t)}{\sum_{t=1}^{T-1} \gamma_i(t)}$
+
 
 
  
