@@ -13,8 +13,6 @@ $$
 a^*_{ij} = \frac{\sum_{t=1}^{T-1} \xi_{ij}(t)}{\sum_{t=1}^{T-1} \gamma_i(t)}
 $$
 
-
-
  
 This is the expected number of transitions from state i to state j over the expected total number of transitions away from state i. Our algorithm will keep track of two ‘global’ variables which track the cumulative sum of the numerator and denominator here across all observation sequences, and then carry out the division at the end after having iterated through all the observations to establish the new state transition probability matrix. Similar logic is used to establish the other parameters too.
 
