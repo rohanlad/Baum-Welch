@@ -9,10 +9,9 @@ The main loop aims to generate a new set of parameters. It does this by iteratin
 
 Gamma and epsilon are used to establish the new set of parameters. However, recall that the main loop performs everything described above per iteration whilst it iterates through all the observation sequences. This is to ensure that information from all the observed sequences are used to establish the new set of parameters. To clarify how it does this, take the traditional formula for the new state transition probability matrix:
 
-a*_{ij} = ( Σ ξ_{ij}(t) ) / ( Σ γ_i(t) ), for t=1 to T-1
+![Equation](formula.png)
 
 
- 
 This is the expected number of transitions from state i to state j over the expected total number of transitions away from state i. Our algorithm will keep track of two ‘global’ variables which track the cumulative sum of the numerator and denominator here across all observation sequences, and then carry out the division at the end after having iterated through all the observations to establish the new state transition probability matrix. Similar logic is used to establish the other parameters too.
 
 Our algorithm scales alpha and beta after creating them, and then uses the scaled values in subsequent calculations. This is because, by definition, all terms in alpha and beta are significantly less than 1. Thus, their respective summations (which are required in subsequent calculations) would exponentially tend to zero as t gets sufficiently large, to the extent that the precision of the computation of the variables would exceed the capability of computer processors. The scaling procedure used sees the values of alpha multiplied by a scaling coefficient which is independent of i. The same scaling coefficient is applied to beta too, so at the end of the computation, the scaling coefficients cancel each other out. 
